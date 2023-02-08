@@ -22,7 +22,7 @@ model User {
     image                String?
     accounts             Account[]
     sessions             Session[]
-    savedTweets          SavedTweets[]
+    savedTweets          SavedTweet[]
     stripeCustomerId     String? // link to Stripe customer object in Stripe's system
     stripeSubscriptionId String? // link to Stripe subscription object for user in Stripe's system
     stripeSubscriptionStatus StripeSubscriptionStatus? // status of user's subscription
@@ -30,7 +30,7 @@ model User {
 
 // https://stripe.com/docs/api/subscriptions/object#subscription_object-status
 
-model SavedTweets {
+model SavedTweet {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

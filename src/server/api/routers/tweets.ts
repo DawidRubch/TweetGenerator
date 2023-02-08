@@ -1,44 +1,34 @@
 import { z } from "zod";
-import { openai } from "../../openai/openai";
+import { generateTweetIdeas, openai } from "../../openai/openai";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const tweetsRouter = createTRPCRouter({
   generateTweetIdeas: publicProcedure
     .input(z.string())
-    .query(async ({ ctx, input }) => {
-      try {
-        const response = await openai.post("", {
-          prompt: "Give me 5 tweet ideas about: " + input + "that are separated by a '-'",
-          temperature: 0.1,
-          max_tokens: 100,
-        });
-
-        console.warn(response.data);
-        return response;
-      } catch (error) {
-        console.error(error);
-        return error;
-      }
+    .mutation(async ({ input }) => {
+      return await generateTweetIdeas(input);
     }),
   saveTweet: protectedProcedure
     .input(z.string())
     .mutation(({ ctx, input: tweet }) => {
-      return prisma?.savedTweets.create({
+      return prisma?.savedTweet.create({
         data: {
           tweet,
           userId: ctx.session.user.id,
         },
       });
     }),
-  unsaveTweet: protectedProcedure.input(z.string()).query(({ input: id }) => {
-    return prisma?.savedTweets.delete({
-      where: {
-        id,
-      },
-    });
-  }),
+  unsaveTweet: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ input, ctx }) => {
+      return prisma?.savedTweet.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
   getSavedTweets: protectedProcedure.query(({ ctx }) => {
-    return prisma?.savedTweets.findMany({
+    return prisma?.savedTweet.findMany({
       where: {
         userId: ctx.session.user.id,
       },
@@ -46,7 +36,7 @@ export const tweetsRouter = createTRPCRouter({
   }),
 
   deleteAllSavedTweets: protectedProcedure.mutation(({ ctx }) => {
-    return prisma?.savedTweets.deleteMany({
+    return prisma?.savedTweet.deleteMany({
       where: {
         userId: ctx.session.user.id,
       },

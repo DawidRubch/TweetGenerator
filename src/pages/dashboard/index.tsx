@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { signOut } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { api } from "../../utils/api";
 
 const SignoutButton = () => {
@@ -63,9 +64,18 @@ const Dashboard: NextPage = () => {
     isError,
   } = api.user.subscriptionStatus.useQuery();
 
+  const { mutateAsync: generateTweets } =
+    api.tweets.generateTweetIdeas.useMutation();
+
   if (isError) {
     return <p>Something went wrong</p>;
   }
+
+  useEffect(() => {
+    generateTweets("sunning on the beach").then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <>
       <Head>

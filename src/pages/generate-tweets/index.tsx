@@ -1,13 +1,18 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
+import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoadingTweet, Tweet } from "../../components/Tweets";
 import { api } from "../../utils/api";
+import { useCountFreeTrials } from "./hooks/useCountFreeTrials";
 
 export default function () {
   const [tweet, setTweet] = useState("");
   const { tweets, generateTweets, isLoading } = useGenerateTweets();
+  const { getCanCallOpenAI } = useCountFreeTrials();
 
   const handleGenerateTweets = () => {
+    if (!getCanCallOpenAI()) return;
+
     generateTweets(tweet);
   };
 
@@ -15,7 +20,7 @@ export default function () {
     setTweet(e.target.value);
 
   return (
-    <main className="mt-12 flex flex-col items-center">
+    <AnimatedPage className="mt-12 flex flex-col items-center">
       <div className=" flex w-[80%] justify-between rounded-full bg-[#7978A9] py-5 px-12">
         <input
           className="w-full appearance-none border-none bg-transparent text-xl text-white placeholder:text-xl placeholder:text-white focus:outline-none"
@@ -36,7 +41,7 @@ export default function () {
         </button>
       </div>
       {isLoading ? <LoadingTweets /> : <Tweets tweets={tweets} />}
-    </main>
+    </AnimatedPage>
   );
 }
 

@@ -6,12 +6,12 @@ import { useEffect } from "react";
 import { api } from "../../utils/api";
 
 const SignoutButton = () => {
+  const onClickSignOut = () => signOut({ callbackUrl: "/" });
+
   return (
     <button
       className="w-fit cursor-pointer rounded-md bg-red-500 px-5 py-2 text-lg font-semibold text-white shadow-sm duration-150 hover:bg-red-600"
-      onClick={() => {
-        signOut({ callbackUrl: "/" });
-      }}
+      onClick={onClickSignOut}
     >
       Sign out
     </button>
@@ -71,11 +71,7 @@ const Dashboard: NextPage = () => {
     return <p>Something went wrong</p>;
   }
 
-  useEffect(() => {
-    generateTweets("sunning on the beach").then((res) => {
-      console.log(res);
-    });
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <Head>

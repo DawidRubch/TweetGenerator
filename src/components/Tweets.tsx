@@ -1,9 +1,12 @@
-import { SavedTweet } from "@prisma/client";
-import { useQueryClient } from "@tanstack/react-query";
+import { SavedTweet as SavedTweetSchema } from "@prisma/client";
 import clsx from "clsx";
-import { api } from "../utils/api";
+import { useState } from "react";
+import { useSavedTweets } from "../hooks/useSavedTweets";
+import { Heart } from "./Heart";
 
-export const SavedTweets: React.FC<{ tweets: SavedTweet[] }> = ({ tweets }) => {
+export const SavedTweets: React.FC<{ tweets: SavedTweetSchema[] }> = ({
+  tweets,
+}) => {
   return (
     <div className="mt-10 flex w-[80%] flex-col">
       {tweets.map(({ tweet, id }) => (
@@ -44,34 +47,59 @@ export const Tweet: React.FC<{
   saved?: boolean;
   id?: string;
 }> = ({ tweet, saved, id }) => {
-  const queryClient = useQueryClient();
-  const { mutate: saveTweet } = api.tweets.saveTweet.useMutation({
-    onSuccess: () => {
-      const query = api.tweets.getSavedTweets.getQueryKey();
+  const { unsaveTweet, saveTweet } = useSavedTweets();
+  const [localSaved, setLocalSaved] = useState(saved);
+  const [isSaving, setIsSaving] = useState(false);
+  const [tweetId, setTweetId] = useState(id);
 
-      queryClient.invalidateQueries(query);
-    },
-  });
-  const { mutate: unsaveTweet } = api.tweets.unsaveTweet.useMutation({
-    onSuccess: () => {
-      const query = api.tweets.getSavedTweets.getQueryKey();
-
-      queryClient.invalidateQueries(query);
-    },
-  });
-
-  const toggleSave = () => {
-    if (saved && id) {
-      unsaveTweet({ id });
-    } else {
-      saveTweet(tweet);
+  const handleSave = async () => {
+    setLocalSaved(true);
+    try {
+      const schema = await saveTweet(tweet);
+      setTweetId(schema?.id);
+    } catch (e) {
+      setLocalSaved(false);
+      throw e;
+    } finally {
+      setIsSaving(false);
     }
   };
+
+  const handleUnsave = async () => {
+    setIsSaving(true);
+    if (!tweetId) return;
+    try {
+      await unsaveTweet({ id: tweetId });
+      setLocalSaved(false);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const toggleSave = () => {
+    setIsSaving(true);
+    if (localSaved) {
+      handleUnsave();
+    } else {
+      handleSave();
+    }
+  };
+
+  const buttonClassName = clsx(
+    "ml-auto mr-5",
+    isSaving && "animate-bounce opacity-50"
+  );
 
   return (
     <TweetSkeleton>
       {tweet}
-      <button onClick={toggleSave}>Heart</button>
+      <button
+        disabled={isSaving}
+        className={buttonClassName}
+        onClick={toggleSave}
+      >
+        {<Heart full={localSaved} />}
+      </button>
     </TweetSkeleton>
   );
 };
@@ -81,7 +109,7 @@ const TweetSkeleton: React.FC<{
   children?: React.ReactNode;
 }> = ({ animate, children }) => {
   const className = clsx(
-    "mt-5  rounded-xl bg-white bg-opacity-20 p-10 text-white",
+    "mt-5  rounded-xl bg-white bg-opacity-20 p-10 text-white flex",
     animate && "animate-pulse"
   );
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { generateTweetIdeas, openai } from "../../openai/openai";
+import { generateTweetIdeas } from "../../openai/openai";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const tweetsRouter = createTRPCRouter({

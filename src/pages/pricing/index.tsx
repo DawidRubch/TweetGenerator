@@ -1,10 +1,11 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { AnimatedPage } from "../../components/AnimatedPage";
 import { api } from "../../utils/api";
 
 export default function () {
   return (
-    <section className=" flex h-full items-center justify-center overflow-hidden text-white">
+    <AnimatedPage className=" flex h-full items-center justify-center overflow-hidden text-white">
       <div>
         <h1 className="m-5 text-4xl font-bold">Plans & Pricing</h1>
         <div
@@ -28,7 +29,7 @@ export default function () {
           ></PricingComponent>
         </div>
       </div>
-    </section>
+    </AnimatedPage>
   );
 }
 

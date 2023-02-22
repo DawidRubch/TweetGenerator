@@ -15,16 +15,16 @@ datasource db {
 }
 
 model User {
-    id                   String        @id @default(cuid())
-    name                 String?
-    email                String?       @unique
-    emailVerified        DateTime?
-    image                String?
-    accounts             Account[]
-    sessions             Session[]
-    savedTweets          SavedTweet[]
-    stripeCustomerId     String? // link to Stripe customer object in Stripe's system
-    stripeSubscriptionId String? // link to Stripe subscription object for user in Stripe's system
+    id                       String                    @id @default(cuid())
+    name                     String?
+    email                    String?                   @unique
+    emailVerified            DateTime?
+    image                    String?
+    accounts                 Account[]
+    sessions                 Session[]
+    savedTweets              SavedTweet[]
+    stripeCustomerId         String? // link to Stripe customer object in Stripe's system
+    stripeSubscriptionId     String? // link to Stripe subscription object for user in Stripe's system
     stripeSubscriptionStatus StripeSubscriptionStatus? // status of user's subscription
 }
 
@@ -34,7 +34,7 @@ model SavedTweet {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    tweet     String
+    tweet     String   @unique
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId    String
 }

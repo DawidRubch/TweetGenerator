@@ -12,7 +12,9 @@ const variants = {
 export default function Home() {
   const { push } = useRouter();
 
-  const goToGenerateTweets = () => push("/generate-tweets");
+  const goToGenerateTweets = () => {
+    push("/generate-tweets").catch((err) => console.log(err));
+  };
 
   return (
     <main className="flex h-5/6 items-center max-lg:flex-wrap max-lg:justify-center">

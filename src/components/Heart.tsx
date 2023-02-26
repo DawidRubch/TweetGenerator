@@ -10,30 +10,30 @@ type Props = {
 export const Heart: React.FC<Props> = ({ full, width = 34, height = 30 }) => {
   const controls = useAnimationControls();
 
-  const animateFromFull = () => {
-    controls.start({
+  const animateFromFull = async () => {
+    await controls.start({
       fill: "none",
     });
-    controls.start({
+    await controls.start({
       stroke: "#fff",
     });
   };
 
-  const animateToFull = () => {
-    controls.start({
+  const animateToFull = async () => {
+    await controls.start({
       stroke: "#e0245e",
     });
 
-    controls.start({
+    await controls.start({
       fill: "#e0245e",
     });
   };
 
   useEffect(() => {
     if (full) {
-      animateToFull();
+      animateToFull().catch((e) => console.error(e));
     } else {
-      animateFromFull();
+      animateFromFull().catch((e) => console.error(e));
     }
   }, [full]);
 

@@ -25,10 +25,11 @@ const LeftSide = () => {
 
 const RightSide = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const onClick = async () => {
+  const onClick = () => {
     setIsLoading(true);
-    await signIn("auth0", { callbackUrl: "/generate-tweets" });
-    setIsLoading(false);
+    signIn("auth0", { callbackUrl: "/generate-tweets" }).finally(() =>
+      setIsLoading(false)
+    );
   };
 
   return (

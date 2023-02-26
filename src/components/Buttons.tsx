@@ -4,10 +4,11 @@ import { useState } from "react";
 
 export const LogOut = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const onClick = async () => {
+  const onClick = () => {
     setIsLoading(true);
-    await signOut();
-    setIsLoading(false);
+    signOut().finally(() => {
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -24,7 +25,9 @@ export const LogOut = () => {
 export const SignIn = () => {
   const { push } = useRouter();
 
-  const onClick = () => push("/auth");
+  const onClick = () => {
+    push("/auth").catch((err) => console.log(err));
+  };
 
   return (
     <button
@@ -38,7 +41,9 @@ export const SignIn = () => {
 export const SignUp = () => {
   const { push } = useRouter();
 
-  const onClick = () => push("/auth");
+  const onClick = () => {
+    push("/auth").catch((err) => console.log(err));
+  };
 
   return (
     <button

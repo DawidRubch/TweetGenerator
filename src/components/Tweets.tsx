@@ -10,7 +10,7 @@ export const SavedTweets: React.FC<{ tweets: SavedTweetSchema[] }> = ({
   return (
     <div className="mt-10 flex w-[80%] flex-col">
       {tweets.map(({ tweet, id }) => (
-        <Tweet tweet={tweet} saved id={id}></Tweet>
+        <Tweet key={id} tweet={tweet} saved id={id}></Tweet>
       ))}
     </div>
   );
@@ -20,7 +20,7 @@ export const Tweets: React.FC<{ tweets: string[] }> = ({ tweets }) => {
   return (
     <div className="mt-10 flex w-[80%] flex-col">
       {tweets.map((tweet) => (
-        <Tweet tweet={tweet}></Tweet>
+        <Tweet key={tweet} tweet={tweet}></Tweet>
       ))}
     </div>
   );
@@ -29,8 +29,8 @@ export const Tweets: React.FC<{ tweets: string[] }> = ({ tweets }) => {
 export const LoadingTweets: React.FC<{ count: number }> = ({ count }) => {
   return (
     <div className="mt-10 flex w-[80%] flex-col">
-      {Array.from(Array(count).keys()).map(() => (
-        <LoadingTweet />
+      {Array.from(Array(count).keys()).map((val) => (
+        <LoadingTweet key={val} />
       ))}
     </div>
   );
@@ -79,9 +79,13 @@ export const Tweet: React.FC<{
     setIsSaving(true);
 
     if (localSaved) {
-      handleUnsave();
+      handleUnsave().catch((e) => {
+        console.error(e);
+      });
     } else {
-      handleSave();
+      handleSave().catch((e) => {
+        console.error(e);
+      });
     }
   };
 

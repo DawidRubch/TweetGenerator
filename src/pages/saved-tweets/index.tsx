@@ -1,4 +1,4 @@
-import { SavedTweet } from "@prisma/client";
+import { type SavedTweet } from "@prisma/client";
 import { useState } from "react";
 import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoginModal } from "../../components/LoginModal";
@@ -11,7 +11,7 @@ export default function SavedTweetsPage() {
   const { data, isFetching, isLoading, isError } =
     api.tweets.getSavedTweets.useQuery(undefined, {
       refetchOnWindowFocus: false,
-      onError: (e) => {
+      onError: () => {
         setShowModal(true);
       },
     });
@@ -31,7 +31,7 @@ export default function SavedTweetsPage() {
   if (data?.length === 0) {
     return (
       <div className="h-8/12 mt-20 flex flex-col items-center text-3xl text-white">
-        You don't have any saved tweets yet
+        You don&#39;t have any saved tweets yet
       </div>
     );
   }

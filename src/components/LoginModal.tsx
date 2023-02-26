@@ -33,7 +33,7 @@ export const LoginModal = ({
           </button>
           <button
             onClick={() => {
-              signIn("auth0");
+              signIn("auth0").catch((err) => console.log(err));
             }}
             className="rounded bg-[#2D2C57] p-2 px-8 text-white"
           >

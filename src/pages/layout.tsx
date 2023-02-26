@@ -11,13 +11,18 @@ export default function HomeLayout({
 }) {
   const { push } = useRouter();
   const { status } = useSession();
+
+  const goToPricing = () => {
+    push("/pricing").catch((err) => console.log(err));
+  };
+
   return (
     <BaseLayout>
       <Header>
         <div className="ml-auto">
           <button
             className="mr-5 ml-auto rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400"
-            onClick={() => push("/pricing")}
+            onClick={goToPricing}
           >
             Pricing
           </button>

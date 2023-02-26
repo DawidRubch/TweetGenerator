@@ -25,7 +25,7 @@ const icon = {
 export const Logo = () => {
   const { push } = useRouter();
   const goToHome = () => {
-    push("/");
+    push("/").catch((err) => console.log(err));
   };
 
   return (

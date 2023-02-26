@@ -71,7 +71,8 @@ export const handleInvoicePaid = async ({
     },
     data: {
       stripeSubscriptionId: subscription.id,
-      stripeSubscriptionStatus: subscription.status,
+      stripeSubscriptionStatus:
+        subscription.status === "paused" ? null : subscription.status,
     },
   });
 };
@@ -93,7 +94,8 @@ export const handleSubscriptionCreatedOrUpdated = async ({
     },
     data: {
       stripeSubscriptionId: subscription.id,
-      stripeSubscriptionStatus: subscription.status,
+      stripeSubscriptionStatus:
+        subscription.status === "paused" ? null : subscription.status,
     },
   });
 };

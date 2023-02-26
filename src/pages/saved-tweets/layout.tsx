@@ -1,8 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { AnimatedPage } from "../../components/AnimatedPage";
 import BaseLayout from "../../components/BaseLayout";
-import { ButtonSkeleton, LogOut } from "../../components/Buttons";
+import { ButtonSkeleton, LogOut, SignIn } from "../../components/Buttons";
 import { Header } from "../../components/Header";
 import { TwitterIcon } from "../../icons/TwtterIcon";
 
@@ -28,7 +27,7 @@ export default function SavedTweetsLayout({
           <span className="ml-2"> Generate tweets</span>
         </button>
         {status === "authenticated" && <LogOut></LogOut>}
-        {status === "unauthenticated" && <LogOut></LogOut>}
+        {status === "unauthenticated" && <SignIn></SignIn>}
         {status === "loading" && <ButtonSkeleton />}
       </Header>
       {children}

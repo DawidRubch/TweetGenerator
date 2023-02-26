@@ -40,7 +40,7 @@ const MyApp = ({
         <link rel=""></link>
       </Head>
       <SnackbarProvider>
-        <SessionProvider session={session}>
+        <SessionProvider session={session as Session}>
           <AnimatePresence
             exitBeforeEnter
             initial={true}

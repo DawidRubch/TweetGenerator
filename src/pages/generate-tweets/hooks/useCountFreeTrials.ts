@@ -44,7 +44,7 @@ const useSessionStorage = <T>(key: string, initialValue: T) => {
     try {
       if (typeof window === "undefined") return initialValue;
       const item = window.sessionStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
       console.log(error);
       return initialValue;

@@ -47,7 +47,7 @@ const PricingComponent = ({
   const { payViaStripe, isLoading } = useStripePayment();
 
   const pay = () => {
-    payViaStripe(price);
+    payViaStripe(price).catch((err) => console.log(err));
   };
 
   return (
@@ -78,13 +78,13 @@ const useStripePayment = () => {
 
   const payViaStripe = async (price: "5" | "10" | "15") => {
     if (status !== "authenticated") {
-      signIn("auth0");
+      signIn("auth0").catch((err) => console.log(err));
       return;
     }
 
     const { checkoutUrl } = await createCheckoutSession({ price });
     if (checkoutUrl) {
-      push(checkoutUrl);
+      push(checkoutUrl).catch((err) => console.log(err));
     }
   };
   return { payViaStripe, isLoading };

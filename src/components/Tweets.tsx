@@ -1,4 +1,4 @@
-import { SavedTweet as SavedTweetSchema } from "@prisma/client";
+import { type SavedTweet as SavedTweetSchema } from "@prisma/client";
 import clsx from "clsx";
 import { useState } from "react";
 import { useSavedTweets } from "../hooks/useSavedTweets";

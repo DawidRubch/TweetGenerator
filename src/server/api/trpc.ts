@@ -35,7 +35,7 @@ type CreateContextOptions = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
-const createInnerTRPCContext = async (opts: CreateContextOptions) => {
+const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
     prisma,
@@ -55,9 +55,9 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const session = await getServerAuthSession({ req, res });
 
   return {
-    ...(await createInnerTRPCContext({
+    ...createInnerTRPCContext({
       session,
-    })),
+    }),
     req,
     res,
   };

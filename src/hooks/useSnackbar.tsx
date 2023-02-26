@@ -22,7 +22,9 @@ const SnackBarInitialState: SnackBarProps = {
 };
 
 const SnackbarContext = createContext<SnackbarContext>({
-  showSnackbar: ({}) => {},
+  showSnackbar: ({}) => {
+    return;
+  },
 });
 
 export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({

@@ -56,7 +56,7 @@ export function Modal({ open, children }: ModalProps) {
   );
 }
 
-const useWrapper = (wrapperId: string = "modal-root") => {
+const useWrapper = (wrapperId = "modal-root") => {
   const [wrapper, setWrapper] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

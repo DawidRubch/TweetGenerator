@@ -20,7 +20,7 @@ export const tweetsRouter = createTRPCRouter({
     }),
   unsaveTweet: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .mutation(({ input, ctx }) => {
+    .mutation(({ input }) => {
       return prisma?.savedTweet.delete({
         where: {
           id: input.id,

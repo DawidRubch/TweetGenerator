@@ -14,7 +14,7 @@ export default function SavedTweetsLayout({
   const { push } = useRouter();
 
   const gotoGenerateTweets = () => {
-    push("/generate-tweets");
+    push("/generate-tweets").catch((err) => console.log(err));
   };
   return (
     <BaseLayout>

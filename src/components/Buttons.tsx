@@ -1,12 +1,19 @@
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export const LogOut = () => {
-  const onClick = () => signOut();
+  const [isLoading, setIsLoading] = useState(false);
+  const onClick = async () => {
+    setIsLoading(true);
+    await signOut();
+    setIsLoading(false);
+  };
 
   return (
     <button
-      className="rounded-full bg-white px-6 py-1  font-semibold hover:bg-slate-400"
+      disabled={isLoading}
+      className="rounded-full bg-white px-6 py-1  font-semibold hover:bg-slate-400 disabled:opacity-50"
       onClick={onClick}
     >
       Logout

@@ -16,12 +16,15 @@ const variants = {
 };
 
 export function Snackbar({ open, message, handleClose, type }: SnackBarProps) {
+
+  
+
   return open ? (
     <>
       <motion.div
         initial={{ opacity: 0, x: 200, y: 0 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
-        className={`${variants[type]} absolute bottom-10 right-10 flex min-w-[320px] items-center justify-between truncate whitespace-nowrap rounded-lg py-3 px-3.5 text-white shadow-md`}
+        className={`${variants[type]} fixed bottom-10 right-10 flex min-w-[320px] items-center justify-between truncate whitespace-nowrap rounded-lg py-3 px-3.5 text-white shadow-md`}
       >
         <span className=" text-md">{message}</span>
         <button
@@ -47,7 +50,7 @@ export function Modal({ open, children }: ModalProps) {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="rounded-lg bg-white p-5 shadow-lg">{children}</div>
+      <div className="rounded-lg bg-white  shadow-lg">{children}</div>
     </div>,
     wrapper
   );

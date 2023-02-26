@@ -39,7 +39,7 @@ export default function GenereteTweetsPage() {
           value={tweet}
           onChange={onTweetChange}
           onKeyDown={(e) => {
-            if (e.key === "Enter") handleGenerateTweets();
+            if (e.key === "Enter" && tweet.length === 0) handleGenerateTweets();
           }}
         ></input>
         <button

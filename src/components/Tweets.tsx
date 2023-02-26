@@ -85,16 +85,10 @@ export const Tweet: React.FC<{
     }
   };
 
-  const buttonClassName = clsx("ml-auto mr-5");
-
   return (
     <TweetSkeleton>
       {tweet}
-      <button
-        disabled={isSaving}
-        className={buttonClassName}
-        onClick={toggleSave}
-      >
+      <button disabled={isSaving} className="ml-auto mr-5" onClick={toggleSave}>
         {<Heart full={localSaved} />}
       </button>
     </TweetSkeleton>

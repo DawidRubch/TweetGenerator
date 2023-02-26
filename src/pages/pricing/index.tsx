@@ -6,7 +6,7 @@ import PricingLayout from "./layout";
 
 export default function PricingPage() {
   return (
-    <AnimatedPage className=" flex h-full items-center justify-center overflow-hidden text-white">
+    <AnimatedPage className=" flex h-5/6 items-center justify-center overflow-hidden text-white">
       <div>
         <h1 className="m-5 text-4xl font-bold">Plans & Pricing</h1>
         <div
@@ -44,20 +44,23 @@ const PricingComponent = ({
   title,
   description,
 }: PricingComponentProps) => {
-  const payViaStripe = useStripePayment();
+  const { payViaStripe, isLoading } = useStripePayment();
 
   const pay = () => {
     payViaStripe(price);
   };
 
   return (
-    <div className="m-5 flex-shrink flex-grow basis-0  rounded-3xl bg-rgba-gray px-5 py-10">
-      <div className="my-10 text-4xl font-bold">${price} /month</div>
+    <div className="m-5 flex-shrink flex-grow basis-0 rounded-3xl bg-rgba-gray px-5 py-10">
+      <div className="my-10 text-5xl font-bold">
+        ${price} <span className="text-lg font-normal">/month</span>
+      </div>
       <div className="my-5 text-3xl font-bold ">{title}</div>
       <div className="text-md h-20">{description}</div>
 
       <button
-        className="my-10 ml-auto mr-auto rounded-full bg-[#371A46] py-3 px-12"
+        disabled={isLoading}
+        className="my-10 ml-auto mr-auto w-full rounded-full bg-[#371A46] py-3 px-12 disabled:opacity-50"
         onClick={pay}
       >
         Choose plan
@@ -67,7 +70,7 @@ const PricingComponent = ({
 };
 
 const useStripePayment = () => {
-  const { mutateAsync: createCheckoutSession } =
+  const { mutateAsync: createCheckoutSession, isLoading } =
     api.payments.createCheckoutSession.useMutation();
 
   const { push } = useRouter();
@@ -84,7 +87,7 @@ const useStripePayment = () => {
       push(checkoutUrl);
     }
   };
-  return payViaStripe;
+  return { payViaStripe, isLoading };
 };
 
 PricingPage.getLayout = function getLayout(page: React.ReactElement) {

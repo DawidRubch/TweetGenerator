@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -17,17 +18,19 @@ const variants = {
 export function Snackbar({ open, message, handleClose, type }: SnackBarProps) {
   return open ? (
     <>
-      <div
-        className={`${variants[type]} absolute top-10 right-10 flex min-w-[320px] items-center justify-between truncate whitespace-nowrap rounded-lg py-3 px-3.5 text-xs text-white shadow-md`}
+      <motion.div
+        initial={{ opacity: 0, x: 200, y: 0 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        className={`${variants[type]} absolute bottom-10 right-10 flex min-w-[320px] items-center justify-between truncate whitespace-nowrap rounded-lg py-3 px-3.5 text-white shadow-md`}
       >
-        <span>{message}</span>
+        <span className=" text-md">{message}</span>
         <button
-          className="bg-transparent !p-0 text-current underline"
+          className="text-md ml-3 bg-transparent !p-0 text-current "
           onClick={handleClose}
         >
-          Close
+          &#x2715;
         </button>
-      </div>
+      </motion.div>
     </>
   ) : null;
 }
@@ -51,17 +54,18 @@ export function Modal({ open, children }: ModalProps) {
 }
 
 const useWrapper = (wrapperId: string = "modal-root") => {
-  const [wrapper, setWrapper] = useState<HTMLElement | null>(
-    document.getElementById(wrapperId)
-  );
+  const [wrapper, setWrapper] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
+    const wrapper = document.getElementById(wrapperId);
+
     if (!wrapper) {
       const wrapper = document.createElement("div");
       wrapper.setAttribute("id", wrapperId);
       document.body.appendChild(wrapper);
       setWrapper(wrapper);
     }
+    setWrapper(wrapper);
   }, [wrapper]);
 
   return wrapper;

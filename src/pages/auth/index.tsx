@@ -1,8 +1,9 @@
 import { signIn } from "next-auth/react";
 import { AnimatedPage } from "../../components/AnimatedPage";
 import { Astronaut } from "./components/Astronaut";
+import { AuthLayout } from "./layout";
 
-export default function () {
+export default function AuthPage() {
   return (
     <AnimatedPage className="flex h-5/6 w-full">
       <LeftSide />
@@ -44,3 +45,7 @@ const RightSide = () => {
     </div>
   );
 };
+
+AuthPage.getLayout = (page: React.ReactElement) => (
+  <AuthLayout>{page}</AuthLayout>
+);

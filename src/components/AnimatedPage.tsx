@@ -11,7 +11,7 @@ export const AnimatedPage: React.FC<{
   className?: string;
 }> = ({ children, className }) => {
   return (
-    <motion.main
+    <motion.section
       variants={variants}
       initial="hidden"
       animate="enter"
@@ -20,6 +20,6 @@ export const AnimatedPage: React.FC<{
       className={className}
     >
       {children}
-    </motion.main>
+    </motion.section>
   );
 };

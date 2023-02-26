@@ -42,6 +42,7 @@ export const useCountFreeTrials = () => {
 const useSessionStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
+      if (typeof window === "undefined") return initialValue;
       const item = window.sessionStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {

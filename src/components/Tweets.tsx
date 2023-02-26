@@ -59,14 +59,13 @@ export const Tweet: React.FC<{
       setTweetId(schema?.id);
     } catch (e) {
       setLocalSaved(false);
-      throw e;
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleUnsave = async () => {
-    setIsSaving(true);
+    setLocalSaved(false);
     if (!tweetId) return;
     try {
       await unsaveTweet({ id: tweetId });
@@ -78,6 +77,7 @@ export const Tweet: React.FC<{
 
   const toggleSave = () => {
     setIsSaving(true);
+
     if (localSaved) {
       handleUnsave();
     } else {
@@ -85,10 +85,7 @@ export const Tweet: React.FC<{
     }
   };
 
-  const buttonClassName = clsx(
-    "ml-auto mr-5",
-    isSaving && "animate-bounce opacity-50"
-  );
+  const buttonClassName = clsx("ml-auto mr-5");
 
   return (
     <TweetSkeleton>

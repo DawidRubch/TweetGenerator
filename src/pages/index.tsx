@@ -18,10 +18,10 @@ export default function Home() {
 
   return (
     <main className="flex h-5/6 items-center max-lg:flex-wrap max-lg:justify-center">
-      <motion.div
-        variants={variants}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+      <div
+        // variants={variants}
+        // initial={{ opacity: 0, y: 100 }}
+        // animate={{ opacity: 1, y: 0 }}
         className="flex w-5/6 flex-col items-center "
       >
         <h1
@@ -38,15 +38,15 @@ export default function Home() {
           <TwitterIcon width={40} height={34} />
           <span className="ml-5">Generate</span>
         </button>
-      </motion.div>
-      <motion.div
-        variants={variants}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+      </div>
+      <div
+        // variants={variants}
+        // initial={{ opacity: 0, y: 100 }}
+        // animate={{ opacity: 1, y: 0 }}
         className="ml-10"
       >
         <LandingPageAstronaut />
-      </motion.div>
+      </div>
     </main>
   );
 }

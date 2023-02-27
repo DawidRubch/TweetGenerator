@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 import { env } from "../../env/server.mjs";
 import { type Stripe } from "stripe";
 import { stripeClient } from "../../server/stripe/client.js";
@@ -18,7 +18,10 @@ export const config = {
 
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     res.status(405).send("Method not allowed");
@@ -70,7 +73,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json({ received: true });
   } catch (err) {
-    res.status(400).send(`Webhook Error: ${(err as any).message}`);
+    res.status(400).send(`Webhook Error: ${(err as Error).message}`);
     console.log(err);
   }
-};
+}

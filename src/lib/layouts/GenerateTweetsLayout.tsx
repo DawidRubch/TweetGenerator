@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import BaseLayout from "../../components/BaseLayout";
 import { ButtonSkeleton, LogOut, SignIn } from "../../components/Buttons";
 import { Header } from "../../components/Header";
-import { Heart } from "../../components/Heart";
+import { Heart } from "../../icons/Heart";
 
 export default function GenereteTweetsLayout({
   children,

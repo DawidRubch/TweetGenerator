@@ -2,7 +2,7 @@ import { type SavedTweet } from "@prisma/client";
 import { useState } from "react";
 import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoginModal } from "../../components/LoginModal";
-import { LoadingTweets, SavedTweets } from "../../components/Tweets";
+import { LoadingTweets, Tweet } from "../../components/Tweets";
 import { api } from "../../utils/api";
 import SavedTweetsLayout from "../../lib/layouts/SavedTweetsLayout";
 
@@ -50,6 +50,16 @@ export default function SavedTweetsPage() {
     </AnimatedPage>
   );
 }
+
+const SavedTweets: React.FC<{ tweets: SavedTweet[] }> = ({ tweets }) => {
+  return (
+    <div className="mt-10 flex w-[80%] flex-col">
+      {tweets.map(({ tweet, id }) => (
+        <Tweet key={id} tweet={tweet} saved id={id}></Tweet>
+      ))}
+    </div>
+  );
+};
 
 SavedTweetsPage.getLayout = (page: React.ReactElement) => {
   return <SavedTweetsLayout>{page}</SavedTweetsLayout>;

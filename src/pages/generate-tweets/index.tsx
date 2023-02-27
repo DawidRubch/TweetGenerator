@@ -2,11 +2,11 @@ import { atom, useAtom } from "jotai";
 import { useState } from "react";
 import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoginModal } from "../../components/LoginModal";
-import { LoadingTweet, Tweet } from "../../components/Tweets";
-import { api } from "../../utils/api";
-import { RepeatIcon } from "../../lib/generate-tweets/components/RepeatIcon";
+import { LoadingTweets, Tweet } from "../../components/Tweets";
+import { RepeatIcon } from "../../icons/RepeatIcon";
 import { useCountFreeTrials } from "../../lib/generate-tweets/hooks/useCountFreeTrials";
 import GenereteTweetsLayout from "../../lib/layouts/GenerateTweetsLayout";
+import { api } from "../../utils/api";
 
 export default function GenereteTweetsPage() {
   const [tweet, setTweet] = useState("");
@@ -48,7 +48,7 @@ export default function GenereteTweetsPage() {
           <RepeatIcon isLoading={isLoading}></RepeatIcon>
         </button>
       </div>
-      {isLoading ? <LoadingTweets /> : <Tweets tweets={tweets} />}
+      {isLoading ? <LoadingTweets count={5} /> : <Tweets tweets={tweets} />}
       <LoginModal
         open={showLoginModal}
         close={() => {
@@ -58,16 +58,6 @@ export default function GenereteTweetsPage() {
     </AnimatedPage>
   );
 }
-
-const LoadingTweets = () => {
-  return (
-    <div className="mt-10 flex w-[80%] flex-col">
-      {Array.from(Array(5).keys()).map((val) => (
-        <LoadingTweet key={val} />
-      ))}
-    </div>
-  );
-};
 
 const Tweets = ({ tweets }: { tweets: string[] }) => {
   return (

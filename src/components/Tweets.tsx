@@ -1,30 +1,8 @@
-import { type SavedTweet as SavedTweetSchema } from "@prisma/client";
 import clsx from "clsx";
 import { useState } from "react";
 import { useSavedTweets } from "../hooks/useSavedTweets";
-import { Heart } from "./Heart";
+import { Heart } from "../icons/Heart";
 
-export const SavedTweets: React.FC<{ tweets: SavedTweetSchema[] }> = ({
-  tweets,
-}) => {
-  return (
-    <div className="mt-10 flex w-[80%] flex-col">
-      {tweets.map(({ tweet, id }) => (
-        <Tweet key={id} tweet={tweet} saved id={id}></Tweet>
-      ))}
-    </div>
-  );
-};
-
-export const Tweets: React.FC<{ tweets: string[] }> = ({ tweets }) => {
-  return (
-    <div className="mt-10 flex w-[80%] flex-col">
-      {tweets.map((tweet) => (
-        <Tweet key={tweet} tweet={tweet}></Tweet>
-      ))}
-    </div>
-  );
-};
 
 export const LoadingTweets: React.FC<{ count: number }> = ({ count }) => {
   return (

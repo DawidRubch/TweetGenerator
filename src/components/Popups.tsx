@@ -14,11 +14,8 @@ const variants = {
   error: "bg-red-500",
   info: "bg-blue-500",
 };
- 
+
 export function Snackbar({ open, message, handleClose, type }: SnackBarProps) {
-
-  
-
   return open ? (
     <>
       <motion.div

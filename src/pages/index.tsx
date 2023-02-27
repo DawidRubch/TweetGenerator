@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { LandingPageAstronaut } from "../icons/LandingPageAstronaut";
 import { TwitterIcon } from "../icons/TwtterIcon";
-import HomeLayout from "./layout";
+import HomeLayout from "../lib/layouts/HomeLayout";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },

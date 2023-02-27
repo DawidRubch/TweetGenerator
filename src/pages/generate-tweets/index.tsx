@@ -4,9 +4,9 @@ import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoginModal } from "../../components/LoginModal";
 import { LoadingTweet, Tweet } from "../../components/Tweets";
 import { api } from "../../utils/api";
-import { RepeatIcon } from "./components/RepeatIcon";
-import { useCountFreeTrials } from "./hooks/useCountFreeTrials";
-import GenereteTweetsLayout from "./layout";
+import { RepeatIcon } from "../../lib/generate-tweets/components/RepeatIcon";
+import { useCountFreeTrials } from "../../lib/generate-tweets/hooks/useCountFreeTrials";
+import GenereteTweetsLayout from "../../lib/layouts/GenerateTweetsLayout";
 
 export default function GenereteTweetsPage() {
   const [tweet, setTweet] = useState("");

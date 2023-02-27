@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { ButtonSkeleton, LogOut, SignIn, SignUp } from "../components/Buttons";
-import { Header } from "../components/Header";
-import BaseLayout from "../components/BaseLayout";
+import { ButtonSkeleton, LogOut, SignIn, SignUp } from "../../components/Buttons";
+import { Header } from "../../components/Header";
+import BaseLayout from "../../components/BaseLayout";
 
 export default function HomeLayout({
   children,

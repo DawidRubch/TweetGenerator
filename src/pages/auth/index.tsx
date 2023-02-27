@@ -1,8 +1,8 @@
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { AnimatedPage } from "../../components/AnimatedPage";
-import { Astronaut } from "./components/Astronaut";
-import { AuthLayout } from "./layout";
+import { Astronaut } from "../../lib/auth/components/Astronaut";
+import { AuthLayout } from "../../lib/layouts/AuthLayout";
 
 export default function AuthPage() {
   return (

@@ -2,7 +2,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { AnimatedPage } from "../../components/AnimatedPage";
 import { api } from "../../utils/api";
-import PricingLayout from "./layout";
+import PricingLayout from "../../lib/layouts/PricingLayout";
 
 export default function PricingPage() {
   return (

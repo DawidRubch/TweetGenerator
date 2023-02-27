@@ -4,7 +4,7 @@ import { AnimatedPage } from "../../components/AnimatedPage";
 import { LoginModal } from "../../components/LoginModal";
 import { LoadingTweets, SavedTweets } from "../../components/Tweets";
 import { api } from "../../utils/api";
-import SavedTweetsLayout from "./layout";
+import SavedTweetsLayout from "../../lib/layouts/SavedTweetsLayout";
 
 export default function SavedTweetsPage() {
   const [showModal, setShowModal] = useState(false);

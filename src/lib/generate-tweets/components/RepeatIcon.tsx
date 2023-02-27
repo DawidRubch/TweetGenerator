@@ -41,8 +41,8 @@ export const RepeatIcon = ({ isLoading }: { isLoading: boolean }) => {
 const useRepeatAnimation = (isLoading: boolean) => {
   const controls = useAnimationControls();
 
-  const startAnimationLoop = () => {
-    controls.start({
+  const startAnimationLoop = async () => {
+    await controls.start({
       rotate: 360,
       transition: {
         repeat: Infinity,
@@ -51,8 +51,8 @@ const useRepeatAnimation = (isLoading: boolean) => {
     });
   };
 
-  const animateToInitial = () => {
-    controls.start({
+  const animateToInitial = async () => {
+    await controls.start({
       rotate: 0,
       transition: {
         duration: 0.5,
@@ -62,10 +62,10 @@ const useRepeatAnimation = (isLoading: boolean) => {
 
   useEffect(() => {
     if (isLoading) {
-      startAnimationLoop();
+      startAnimationLoop().catch((e) => console.error(e));
     } else {
       controls.stop();
-      animateToInitial();
+      animateToInitial().catch((e) => console.error(e));
     }
   }, [isLoading]);
 

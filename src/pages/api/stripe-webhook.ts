@@ -1,13 +1,13 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { env } from "../../env/server.mjs";
 import { type Stripe } from "stripe";
-import { stripeClient } from "../../server/stripe/client.js";
+import { stripeClient } from "../../server/stripe/client";
 import { buffer } from "micro";
 import {
   handleInvoicePaid,
   handleSubscriptionCanceled,
   handleSubscriptionCreatedOrUpdated,
-} from "../../server/stripe/stripe-webhook-handlers.js";
+} from "../../server/stripe/stripe-webhook-handlers";
 import { prisma } from "../../server/db";
 
 export const config = {

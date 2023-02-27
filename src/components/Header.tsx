@@ -5,7 +5,9 @@ export const Header = ({ children }: { children?: React.ReactNode }) => {
   return (
     <header className="flex w-full items-center">
       <Logo />
-      <h1 className="ml-5 text-3xl font-bold text-white	">TweetGenerator</h1>
+      <h1 className="ml-5 text-3xl font-bold text-white	max-lg:text-xl max-sm:hidden">
+        TweetGenerator
+      </h1>
       {children}
     </header>
   );
@@ -31,8 +33,7 @@ export const Logo = () => {
   return (
     <button onClick={goToHome}>
       <motion.svg
-        width="56"
-        height="56"
+        className="h-14 w-14 max-lg:h-8 max-lg:w-8"
         viewBox="0 0 56 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

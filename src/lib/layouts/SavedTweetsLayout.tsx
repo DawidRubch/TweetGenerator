@@ -21,7 +21,7 @@ export default function SavedTweetsLayout({
       <Header>
         <button
           onClick={gotoGenerateTweets}
-          className="mr-5 ml-auto flex items-center rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400"
+          className="max-xs: mr-5 ml-auto flex items-center rounded-full border border-white px-6 py-1  font-semibold text-white	hover:border-slate-400 hover:text-slate-400  max-xs:mr-1  max-xs:px-1 max-xs:text-xs"
         >
           <TwitterIcon width={25} height={20} />
           <span className="ml-2"> Generate tweets</span>

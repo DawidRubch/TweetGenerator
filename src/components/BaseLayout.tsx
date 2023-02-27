@@ -11,5 +11,7 @@ export default function BaseLayout({ children }: Props) {
     ? "auth-background-gradient"
     : "backgroud-gradient";
 
-  return <main className={`${bg} h-full p-10 px-20`}>{children}</main>;
+  return (
+    <main className={`${bg} h-full py-10 px-20 max-lg:px-5`}>{children}</main>
+  );
 }

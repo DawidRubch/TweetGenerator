@@ -1,7 +1,6 @@
 export const LandingPageAstronaut = () => (
   <svg
-    width="598"
-    height="521"
+    className="h-[521px] w-[598px] max-lg:h-[260px] max-lg:w-[300px] max-xs:h-[280px] max-xs:w-[220px]"
     viewBox="0 0 598 521"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

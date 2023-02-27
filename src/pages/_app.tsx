@@ -1,16 +1,15 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { AppProps, type AppType } from "next/app";
+import type { AppProps } from "next/app";
 
 import { api } from "../utils/api";
 
+import { AnimatePresence } from "framer-motion";
+import { type NextPage } from "next";
 import Head from "next/head";
-import BaseLayout from "../components/BaseLayout";
+import type { ReactElement, ReactNode } from "react";
 import { SnackbarProvider } from "../hooks/useSnackbar";
 import "../styles/globals.css";
-import { AnimatePresence } from "framer-motion";
-import { NextPage } from "next";
-import { ReactElement, ReactNode } from "react";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -30,19 +29,11 @@ const MyApp = ({
     <>
       <Head>
         <title>TweetGenerator</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link rel=""></link>
       </Head>
       <SnackbarProvider>
         <SessionProvider session={session as Session}>
           <AnimatePresence
-            exitBeforeEnter
+            mode="wait"
             initial={true}
             onExitComplete={() => window.scrollTo(0, 0)}
           >

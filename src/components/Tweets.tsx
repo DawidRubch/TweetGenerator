@@ -91,8 +91,12 @@ export const Tweet: React.FC<{
 
   return (
     <TweetSkeleton>
-      {tweet}
-      <button disabled={isSaving} className="ml-auto mr-5" onClick={toggleSave}>
+      <span> {tweet}</span>
+      <button
+        disabled={isSaving}
+        className="ml-auto mr-5 max-sm:mr-1 "
+        onClick={toggleSave}
+      >
         {<Heart full={localSaved} />}
       </button>
     </TweetSkeleton>
@@ -104,7 +108,7 @@ const TweetSkeleton: React.FC<{
   children?: React.ReactNode;
 }> = ({ animate, children }) => {
   const className = clsx(
-    "mt-5  rounded-xl bg-white bg-opacity-20 p-10 text-white flex",
+    "mt-5  rounded-xl bg-white bg-opacity-20 p-10 text-white flex max-sm:p-5 max-sm:px-3 max-sm:text-sm flex items-center",
     animate && "animate-pulse"
   );
 

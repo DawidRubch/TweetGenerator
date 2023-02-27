@@ -21,10 +21,10 @@ export default function GenereteTweetsLayout({
       <Header>
         <button
           onClick={gotoSavedTweets}
-          className="mr-5 ml-auto flex items-center rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400"
+          className="mr-5 ml-auto flex items-center rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400 max-xs:px-1  max-xs:mr-1"
         >
           <Heart full={true} width={24} height={20} />
-          <span className="ml-1"> Saved tweets</span>
+          <span className="ml-1 max-xs:ml-0"> Saved tweets</span>
         </button>
 
         {status === "loading" && <ButtonSkeleton />}

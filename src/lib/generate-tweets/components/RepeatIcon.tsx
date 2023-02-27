@@ -5,9 +5,7 @@ export const RepeatIcon = ({ isLoading }: { isLoading: boolean }) => {
   const controls = useRepeatAnimation(isLoading);
   return (
     <motion.svg
-      className="disabled:"
-      width="58"
-      height="58"
+      className="h-[58px] w-[58px] max-sm:h-[40px] max-sm:w-[40px]"
       viewBox="0 0 58 58"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

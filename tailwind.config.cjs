@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         "rgba-gray": "rgba(255, 255, 255, 0.2)",
       },
+      screens: {
+        xs: "350px",
+      },
     },
   },
   plugins: [],

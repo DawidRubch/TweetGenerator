@@ -28,6 +28,18 @@
   );
 }
 
+@media not all and (min-width: 640px) {
+  .auth-background-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 64, 151, 1) 0%,
+      rgba(2, 70, 152, 1) 0%,
+      rgba(9, 19, 61, 1) 50%
+    );
+  }
+}
+
 .landing-page-drop-shadow {
   text-shadow: 5px 4px 11px #1da1f2;
 }

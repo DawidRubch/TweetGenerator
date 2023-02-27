@@ -29,9 +29,9 @@ export default function GenereteTweetsPage() {
 
   return (
     <AnimatedPage className="mt-12 flex flex-col items-center">
-      <div className=" flex w-[80%] justify-between rounded-full bg-[#7978A9] py-5 px-12">
+      <div className=" flex w-[80%] justify-between rounded-full bg-[#7978A9] py-5 px-12 max-sm:py-1 max-sm:px-6">
         <input
-          className="w-full appearance-none border-none bg-transparent text-xl text-white placeholder:text-xl placeholder:text-white focus:outline-none"
+          className="w-full appearance-none border-none bg-transparent text-xl text-white placeholder:text-xl placeholder:text-white focus:outline-none max-sm:placeholder:text-base max-xs:placeholder:text-sm"
           type="text"
           placeholder="Type tweet idea here"
           value={tweet}

@@ -1,6 +1,11 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { ButtonSkeleton, LogOut, SignIn, SignUp } from "../../components/Buttons";
+import {
+  ButtonSkeleton,
+  LogOut,
+  SignIn,
+  SignUp,
+} from "../../components/Buttons";
 import { Header } from "../../components/Header";
 import BaseLayout from "../../components/BaseLayout";
 
@@ -21,7 +26,7 @@ export default function HomeLayout({
       <Header>
         <div className="ml-auto">
           <button
-            className="mr-5 ml-auto rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400"
+            className="mr-5 ml-auto rounded-full border border-white px-6 py-1 font-semibold  text-white hover:border-slate-400	hover:text-slate-400 max-lg:mr-1 max-lg:px-3 max-lg:py-1 max-xs:px-1"
             onClick={goToPricing}
           >
             Pricing

@@ -6,6 +6,7 @@ const savedTweetsQueryKey = api.tweets.getSavedTweets.getQueryKey();
 
 export const useSavedTweets = () => {
   const { showSnackbar } = useSnackbar();
+
   const queryClient = useQueryClient();
   const { mutateAsync: saveTweet } = api.tweets.saveTweet.useMutation({
     onSuccess: (response) => {

@@ -11,7 +11,7 @@ export const tweetsRouter = createTRPCRouter({
   saveTweet: protectedProcedure
     .input(z.string())
     .mutation(({ ctx, input: tweet }) => {
-      return prisma?.savedTweet.create({
+      return ctx.prisma.savedTweet.create({
         data: {
           tweet,
           userId: ctx.session.user.id,
@@ -20,15 +20,15 @@ export const tweetsRouter = createTRPCRouter({
     }),
   unsaveTweet: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .mutation(({ input }) => {
-      return prisma?.savedTweet.delete({
+    .mutation(({ input, ctx }) => {
+      return ctx.prisma.savedTweet.delete({
         where: {
           id: input.id,
         },
       });
     }),
   getSavedTweets: protectedProcedure.query(({ ctx }) => {
-    return prisma?.savedTweet.findMany({
+    return ctx.prisma.savedTweet.findMany({
       where: {
         userId: ctx.session.user.id,
       },
@@ -36,7 +36,7 @@ export const tweetsRouter = createTRPCRouter({
   }),
 
   deleteAllSavedTweets: protectedProcedure.mutation(({ ctx }) => {
-    return prisma?.savedTweet.deleteMany({
+    return ctx.prisma.savedTweet.deleteMany({
       where: {
         userId: ctx.session.user.id,
       },
